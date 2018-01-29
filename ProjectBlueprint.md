@@ -12,44 +12,47 @@ Planning music for a party is difficult! We want to develop an easy way for some
 ### Goals:
 
 ##### Keenan's Goals: 
-I want to get a more complete understanding of web development, especially in context of integrations, deployment, and scaling. 
-At the same time, I want to make a product that is usable and polished to a certain extent.
-I also want to gain some fluency/competency with new web technologies.
+- I want to get a more complete understanding of web development, especially in context of integrations, deployment, and scaling. 
+- At the same time, I want to make a product that is usable and polished to a certain extent.
+- I also want to gain some fluency/competency with new web technologies.
 
 
 ##### Katie's Goals:
-Be able to implement the production and integration tools for an application and understand which are necessary before initial deployment.
-Become an advanced level Node programmer
-Learn new frameworks / languages
+- Be able to implement the production and integration tools for an application and understand which are necessary before initial deployment.
+- Become an advanced level Node programmer
+- Learn new frameworks / languages
 
 ##### Team Goals:
-Learn some new tech/frameworks
-Follow through with production implementation goals (keep unit testing throughout, for example)
-Make a useable app! Think about UX 
-Publish it somewhere at the end! Promote it and #profit
+- Learn some new tech/frameworks
+- Follow through with production implementation goals (keep unit testing throughout, for example)
+- Make a useable app! Think about UX 
+- Publish it somewhere at the end! Promote it and #profit
 
 ### Feature Set:
 
 ##### MVP: 
-A web application that saves a user’s spotify login and friend information
-Spotify authentication through user account
-Allows the user to select a set of friends
-Plays random songs from those friends’ playlists
-Show as a ‘playlist’ on the app
-Choice of playlist/party length
+- A web application that saves a user’s spotify login and friend information
+- Spotify authentication through user account
+- Allows the user to select a set of friends
+- Plays random songs from those friends’ playlists
+- Show as a ‘playlist’ on the app
+- Choice of playlist/party length
 
 ##### Next Steps: 
-Improve UI/UX
-Save friend songs as a playlist / optionally delete the playlist
-Integrated web player / how do we play full versions nicely?
-More sophisticated song selection algorithm: use most recent friend songs, pull from top charts playlists based on recently played artists by friends
+- Improve UI/UX
+- Save friend songs as a playlist / optionally delete the playlist
+- Edit / Delete songs from the playlist
+- Integrated web player / how do we play full versions nicely?
+- More sophisticated song selection algorithm: use most recent friend songs, pull from top charts playlists based on recently played artists by friends
 
 ##### Stretch Goals: 
-Interface for the user to select attributes of the friend playlist generation
-Select genres as well as friends
-Context analysis (should we exclude songs with certain content)
-Analytics! Dashboards! Big Data! ML bc why not!
-Integrate with SoundCloud/AppleMusic/GooglePlay/AmazonMusic?
+- Interface for the user to select attributes of the friend playlist generation
+- Collaborative playlist creation (friends can add songs to list, based on similar suggested songs)
+- Select genres as well as friends
+- Context analysis (should we exclude songs with certain content)
+- Analytics! Dashboards! Big Data! ML bc why not!
+- Integrate with SoundCloud/AppleMusic/GooglePlay/AmazonMusic?
+
 
 ### System Architecture:
 
