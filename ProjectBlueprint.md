@@ -31,7 +31,7 @@ Planning music for a party is difficult! We want to develop an easy way for some
 ### Feature Set:
 
 ##### MVP: 
-- A web application that saves a user’s spotify login and friend information
+- A web application that saves a user’s Spotify login and friend information
 - Spotify authentication through user account
 - Allows the user to select a set of friends
 - Plays random songs from those friends’ playlists
@@ -44,6 +44,7 @@ Planning music for a party is difficult! We want to develop an easy way for some
 - Edit / Delete songs from the playlist
 - Integrated web player / how do we play full versions nicely?
 - More sophisticated song selection algorithm: use most recent friend songs, pull from top charts playlists based on recently played artists by friends
+- Add more testings (through the whole pyramid)
 
 ##### Stretch Goals: 
 - Interface for the user to select attributes of the friend playlist generation
@@ -57,42 +58,41 @@ Planning music for a party is difficult! We want to develop an easy way for some
 ### System Architecture:
 
 ##### Frontend: 
-React
-Redux
+- React
+- Redux
 
-##### Backend: NodeJS
-We chose Node as our backend mostly because we both have some level of familiarity with it, and having a consistent JS structure will make some things easier. 
-We are both interested in learning Go, but that's probably out of scope for the purpose of this project. 
+##### Backend: NodeJS with Express
+- We chose Node as our backend mostly because we both have some level of familiarity with it, and having a consistent JS structure will make some things easier. 
+- We are both interested in learning Go, but that's probably out of scope for the purpose of this project. 
 
 ##### Database: 
-We are using SQL because we don’t see ourselves needing to store complex data, and the tabular format works for simple login information
-We also chose the database as a learning area given our lack of experience with SQL
-Also fuck mongo
+- We are using SQL because we don’t see ourselves needing to store complex data, and the tabular format works for simple login information
+- We also chose the database as a learning area given our lack of experience with SQL
+- Also fuck mongo
 
 ### Project Timeline:
 
-Week 0: Project Blueprint → Set up Hello World
-Weeks 1-3: Testing → Finish MVP
-Week 4: Continuous Integration
-Weeks 5-6: Deployment
-Week 7: Feature Development → Ideally Next Steps done
-Weeks 8-9: Docker
-Week 10: Feature Development → Ideally Stretch Goals
-Weeks 11-12: Kubernetes → Documentation
+- Week 0: Project Blueprint → Set up Hello World
+- Weeks 1-3: Testing → Finish MVP
+- Week 4: Continuous Integration
+- Weeks 5-6: Deployment
+- Week 7: Feature Development → Ideally Next Steps done
+- Weeks 8-9: Docker
+- Week 10: Feature Development → Ideally Stretch Goals
+- Weeks 11-12: Kubernetes → Documentation
 
 
 ### Risks:
-We don't have much experience with SQL, but our project isn't super database intensive so we foresee it will be alright. 
-Over-scoping the project / realizing that things we wanted to do were way more complicated than we anticipated. 
-Getting caught up in learning a new technology to an unnecessary depth
-Getting lost in Hieu's eyes….. mmmmm…...
+- We don't have much experience with SQL, but our project isn't super database intensive so we foresee it will be alright. 
+- Over-scoping the project / realizing that things we wanted to do were way more complicated than we anticipated. 
+- Getting caught up in learning a new technology to an unnecessary depth
+- Getting lost in Hieu's eyes….. mmmmm…...
 
 ### Documentation Plan:
 
-Medium publication of how we build this?
-Nice landing page with signup info
-README & Markdown stuff in the repo
-
+- Nice landing page with signup info (this for sure)
+- README & Markdown stuff in the repo (this for sure too)
+- Medium publication of how we build this maybe? If time
 
 ### Appendix/Resources:
 
