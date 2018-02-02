@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Login from '../login/Login';
 import './App.css';
+
 
 class App extends Component {
   state = {
@@ -33,6 +35,7 @@ class App extends Component {
         <p className="AppIntro">
 		      Planning music for a party is difficult! We want to develop an easy way for someone to analyze their friends Spotify preferences to create a well-received and non-offensive playlist for a party.
         </p>
+        <Login />
       </div>
     );
   }
