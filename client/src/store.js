@@ -1,0 +1,1 @@
+// Store goes here that should combine all of the component stores

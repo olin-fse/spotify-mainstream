@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/olin-fse/spotify-mainstream#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "4.16.2"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "3.5.1"
   }
 }
