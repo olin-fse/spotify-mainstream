@@ -1,3 +1,18 @@
+# SPOTIFY MAINSTREAM
+### Project for Full-Stack Engineering, Spring 2018
+##### Katie Hite and Keenan Zucker
+
+_______________________________________
+
+
+Spotify Mainstream is a way to generate the perfect party playlist that everyone likes, because it's a combination of the party-goers' tunes!
+
+
+_______________________________________
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
