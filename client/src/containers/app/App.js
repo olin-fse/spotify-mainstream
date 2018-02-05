@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { render } from 'react-dom';
+
 import logo from './logo.svg';
-import Login from '../login/Login';
+import Login from 'containers/login/Login';
+import NewParty from 'containers/new-party/NewParty';
 import './App.css';
 
 
@@ -33,9 +36,10 @@ class App extends Component {
         </header>
         <p className="AppIntro">{this.state.response}</p>
         <p className="AppIntro">
-		      Planning music for a party is difficult! We want to develop an easy way for someone to analyze their friends Spotify preferences to create a well-received and non-offensive playlist for a party.
+          Planning music for a party is difficult! We want to develop an easy way for someone to analyze their friends Spotify preferences to create a well-received and non-offensive playlist for a party.
         </p>
         <Login />
+        <NewParty />
       </div>
     );
   }
