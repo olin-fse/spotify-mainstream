@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Connect to database and log tables to confirm
+// Connect to database and example query to confirm
 var DB_CONFIG = require('./config/database_config.secret.json');
 connection = mysql.createConnection({
 	host: DB_CONFIG.host,
@@ -19,7 +19,7 @@ connection.connect(function(err) {
 		console.error('Error connecting to mysql: ' + err.stack);
 		return;
 	}
-	console.log('Connected to database as ' + connection.threadID);
+	console.log('Connected to database');
 });
 
 var sql_command = "show tables";
@@ -29,6 +29,11 @@ connection.query(sql_command, function (err, res) {
 	}
 	console.log("Found database tables: " + JSON.stringify(res));
 });
+
+
+// TODO: Discuss if each component is handleing its own queries
+module.exports = connection;
+
 
 // TODO --> put the routes into the ./routes folder/files
 // TODO --> also, write tests for all of these!

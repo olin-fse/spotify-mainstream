@@ -21,3 +21,4 @@ reports
 screenshots
 runner.sh
 *.secret.json
+*.swp
