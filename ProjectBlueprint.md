@@ -66,9 +66,10 @@ Planning music for a party is difficult! We want to develop an easy way for some
 - We are both interested in learning Go, but that's probably out of scope for the purpose of this project. 
 
 ##### Database: 
-- We are using SQL because we don’t see ourselves needing to store complex data, and the tabular format works for simple login information
+- We are using mySQL because we don’t see ourselves needing to store complex data, and the tabular format works for simple login information
 - We also chose the database as a learning area given our lack of experience with SQL
 - Also fuck mongo
+- Hosting the database on the free tier of Amazon RDS
 
 ### Project Timeline:
 
