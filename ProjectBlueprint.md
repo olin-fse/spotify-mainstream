@@ -47,6 +47,7 @@ Planning music for a party is difficult! We want to develop an easy way for some
 - Add more testings (through the whole pyramid)
 
 ##### Stretch Goals: 
+- Messages (thru FB) selected friends for them to login, therefore giving better algorithm selections
 - Interface for the user to select attributes of the friend playlist generation
 - Collaborative playlist creation (friends can add songs to list, based on similar suggested songs)
 - Select genres as well as friends
