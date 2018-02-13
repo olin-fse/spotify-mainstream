@@ -1,7 +1,12 @@
-// friend list to select from
 import React, { Component } from 'react';
+import 'components/new-party/new-party.css';
+
 
 class FriendList extends Component {
+
+  onToggleFriend = (username) => {
+    this.props.toggleFriend(username);
+  }
 
   renderLoading() {
     return <div>Loading...</div>;
@@ -12,11 +17,14 @@ class FriendList extends Component {
   }
 
   renderFriendList = () => {
-    console.log(this.props);
+    // console.log(this.props);
     let friends = [];
     this.props.friendList.forEach((friend, i) => {
-      friends.push(<li key={i}>{friend.name}</li>);
-    })
+      friends.push(
+        <li className={"selected-" + friend.selected} onClick={() => this.onToggleFriend(friend.username)} key={i}>{friend.name}</li>
+      );
+    });
+
     return (
       <div className="friend-list">
         <ul>

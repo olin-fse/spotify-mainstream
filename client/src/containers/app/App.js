@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-
 import logo from './logo.svg';
 import Login from 'containers/login/Login';
 import NewParty from 'containers/new-party/NewParty';
 import './App.css';
-
 
 class App extends Component {
   state = {

@@ -13,25 +13,21 @@ class NewParty extends Component {
   constructor(props) {
     super(props);
 
-  }
-
-  selectFriend = () => {
-    console.log("friend clicked!");
-    // TODO --> Call the API to update the backend/database here!
-  }
-
-  findFriends = () => {
-    // TODO -> call the Spotify API to generate the list of friends, set those into the state
-
-    // testing names
-    const friends = [
-      {name: 'Kaite', id: 1111},
-      {name: 'Pat', id: 1112},
-      {name: 'Hieu', id: 1113},
-      {name: 'Keenan', id: 1114},      
+    // testing name object
+    const users = [
+      {name: 'Kaite Hite', username: 'kghite', selected: false},
+      {name: 'Keenan Zucker', username: '1232057693', selected: false}  
     ];
 
-    this.props.actions.getFriendList(friends);
+    this.props.actions.getFriendList(users);
+  }
+
+  toggleFriend = (username) => {
+    console.log("friend clicked: " + username);
+    this.props.actions.toggleFriend(username);
+
+
+    // TODO --> Call the API to update the backend/database here!
   }
 
   render() {
@@ -39,9 +35,10 @@ class NewParty extends Component {
     return (
       <div className="new-party">
         <h1>NEW PARTY!</h1>
-        <button onClick={this.findFriends}>Go!</button>
-        <FriendList friendList={this.props.newParty.friendList} selectFriend={this.selectFriend}/>
+        <h3>Select your friends and create a playlist</h3>
+        <FriendList friendList={this.props.newParty.friendList} toggleFriend={this.toggleFriend}/>
         <PlaylistOptions />
+        <button>Create a Playlist</button>
       </div>
     );
   }

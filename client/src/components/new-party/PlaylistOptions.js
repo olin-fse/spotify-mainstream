@@ -6,7 +6,7 @@ class PlaylistOptions extends Component {
   render() {
     return (
       <div className="playlist-options">
-        <button>Playlist Options</button>
+        
       </div>
     );
   }

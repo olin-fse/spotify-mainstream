@@ -1,15 +1,14 @@
 // new party actions
 
 // select one of the friends from the list
-export const selectFriend = (friendId) => {
+export const toggleFriend = (username) => {
   return {
-    type: 'SELECT-FRIEND',
-    friendId
+    type: 'TOGGLE-FRIEND',
+    username
   }
 }
 
 export const getFriendList = (friendList) => {
-  console.log(friendList);
   return {
     type: 'GET-FRIEND-LIST',
     friendList
