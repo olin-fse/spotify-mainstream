@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Login from 'containers/login/Login';
-import NewParty from 'containers/new-party/NewParty';
 import './App.css';
+import logo from './logo.svg';
 
 class App extends Component {
   state = {
@@ -16,11 +14,11 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/v1/hello');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-
+    console.log(body);
     return body;
   };
 
@@ -35,8 +33,6 @@ class App extends Component {
         <p className="AppIntro">
           Planning music for a party is difficult! We want to develop an easy way for someone to analyze their friends Spotify preferences to create a well-received and non-offensive playlist for a party.
         </p>
-        <Login />
-        <NewParty />
       </div>
     );
   }

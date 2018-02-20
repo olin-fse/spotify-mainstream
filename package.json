@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/olin-fse/spotify-mainstream#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "4.16.2",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "node-fetch": "^2.0.0"
   },
   "devDependencies": {
     "concurrently": "3.5.1"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }

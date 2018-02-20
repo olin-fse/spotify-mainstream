@@ -1,6 +1,7 @@
 // new party reducers
 const defaultState = {
-  friendList: []
+  friendList: [],
+  playlistTracks: []
 }
 
 export default function newParty(state=defaultState, action) {
@@ -20,6 +21,12 @@ export default function newParty(state=defaultState, action) {
       return {
         ...state, friendList: action.friendList
       }
+    
+      case 'SET-PLAYLIST-TRACKS':
+        return {
+          ...state, 
+          playlistTracks: state.playlistTracks.concat(action.tracks)
+        }
 
     default:
       return state;
