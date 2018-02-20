@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.sass';
-import App from './containers/app/App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import Store from 'store.js';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import App from './containers/app/App';
+import Login from 'containers/login/Login';
+import NewParty from 'containers/new-party/NewParty';
+import Playlist from 'containers/playlist/Playlist';
 
 const rootEl = document.getElementById("root");
 
 ReactDOM.render(
   <Provider store={Store()}>
-      <App />
+    <Router>
+      <div>
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
+        <Route path="/new-party" component={NewParty} />
+        <Route path="/playlist" component={Playlist} />
+      </div>
+    </Router>
   </Provider>,
   rootEl
 );

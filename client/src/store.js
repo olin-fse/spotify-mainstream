@@ -12,6 +12,5 @@ const rootReducer = combineReducers({
 });
 
 export default (initialState) => {
-    console.log('combining reducers');
     return createStore(rootReducer, initialState);
 };

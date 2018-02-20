@@ -13,35 +13,59 @@ class NewParty extends Component {
   constructor(props) {
     super(props);
 
-  }
-
-  selectFriend = () => {
-    console.log("friend clicked!");
-    // TODO --> Call the API to update the backend/database here!
-  }
-
-  findFriends = () => {
-    // TODO -> call the Spotify API to generate the list of friends, set those into the state
-
-    // testing names
-    const friends = [
-      {name: 'Kaite', id: 1111},
-      {name: 'Pat', id: 1112},
-      {name: 'Hieu', id: 1113},
-      {name: 'Keenan', id: 1114},      
+    // testing name object (will be pulling from database or state here)
+    const users = [
+      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQDgNusZ6nr-BEOW_xUn5bm5du3CoCt5XDTjKe4jCQk98lzi_15OvUGhMbc3hrZl2ODFzqRc4i-y-KTw6nBhvabzJ_VC3QpRPEEh0ZrMmxpXCRCCtl7XFDjP-VKuxXLPe2oQmnsMIsapjdbsKl3uYt3--LyRjpHMhmf2ZYstKLn_F2-S3RZS0vvjVBg-KVfKQg'},
+      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQDgNusZ6nr-BEOW_xUn5bm5du3CoCt5XDTjKe4jCQk98lzi_15OvUGhMbc3hrZl2ODFzqRc4i-y-KTw6nBhvabzJ_VC3QpRPEEh0ZrMmxpXCRCCtl7XFDjP-VKuxXLPe2oQmnsMIsapjdbsKl3uYt3--LyRjpHMhmf2ZYstKLn_F2-S3RZS0vvjVBg-KVfKQg'}  
     ];
 
-    this.props.actions.getFriendList(friends);
+    this.props.actions.getFriendList(users);
+  }
+
+  toggleFriend = (username) => {
+    console.log("friend clicked: " + username);
+    this.props.actions.toggleFriend(username);
+  }
+
+  createNewPlaylist = () => {
+    console.log("Create Playlist Clicked");
+
+    let selectedUsers = this.props.newParty.friendList.filter(friend => {
+      return friend.selected;
+    });
+
+    fetch('/api/v1/get-playlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        users: selectedUsers
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Client res: ");
+      console.log(data);
+      this.props.actions.setPlaylistTracks(data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+    // SWITCH TO THE PLAYLIST FORM
+    // window.location = "/playlist";
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="new-party">
         <h1>NEW PARTY!</h1>
-        <button onClick={this.findFriends}>Go!</button>
-        <FriendList friendList={this.props.newParty.friendList} selectFriend={this.selectFriend}/>
+        <h3>Select your friends and create a playlist</h3>
+        <FriendList friendList={this.props.newParty.friendList} toggleFriend={this.toggleFriend}/>
         <PlaylistOptions />
+        <button onClick={this.createNewPlaylist}>Create a Playlist with these friends!</button>
       </div>
     );
   }

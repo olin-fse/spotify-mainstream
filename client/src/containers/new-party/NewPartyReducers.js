@@ -1,20 +1,32 @@
 // new party reducers
+const defaultState = {
+  friendList: [],
+  playlistTracks: []
+}
 
-export default function newParty(state={}, action) {
-  console.log('new-party reducer');
+export default function newParty(state=defaultState, action) {
   switch (action.type) {
-    // add a friend to the state of selected friends
-    case 'SELECT-FRIEND':
-      return {
+    // toggle if the friend is selected or not
+    case 'TOGGLE-FRIEND':
+      const newState = {
         ...state, 
-        selectedFriends: [...state.selectedFriends, action.friendId] 
+        friendList : state.friendList.map(user => {
+          if (user.username === action.username) return {...user, selected: !user.selected}
+          return user;
+        })
       }
+      return newState;
 
     case 'GET-FRIEND-LIST':
-      console.log('get friend list reducer');
       return {
         ...state, friendList: action.friendList
       }
+    
+      case 'SET-PLAYLIST-TRACKS':
+        return {
+          ...state, 
+          playlistTracks: state.playlistTracks.concat(action.tracks)
+        }
 
     default:
       return state;

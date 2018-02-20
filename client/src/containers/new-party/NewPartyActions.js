@@ -1,17 +1,24 @@
 // new party actions
 
 // select one of the friends from the list
-export const selectFriend = (friendId) => {
+export const toggleFriend = (username) => {
   return {
-    type: 'SELECT-FRIEND',
-    friendId
+    type: 'TOGGLE-FRIEND',
+    username
   }
 }
 
+// get all of the users from the DB
 export const getFriendList = (friendList) => {
-  console.log(friendList);
   return {
     type: 'GET-FRIEND-LIST',
     friendList
+  }
+}
+
+export const setPlaylistTracks = (tracks) => {
+  return {
+    type: 'SET-PLAYLIST-TRACKS',
+    tracks
   }
 }
