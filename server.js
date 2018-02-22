@@ -33,7 +33,7 @@ const port = process.env.PORT || 5000;
 // });
 
 
-// // // TODO: Discuss if each component is handling its own queries
+// TODO: Discuss if each component is handling its own queries
 // module.exports = connection;
 
 // The internal routes will be prepended with /api/v1

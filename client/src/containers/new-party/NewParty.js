@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import './NewParty.sass';
 import FriendList from 'components/new-party/FriendList';
 import PlaylistOptions from 'components/new-party/PlaylistOptions';
+import Tracklist from 'components/playlist/Tracklist';
 import * as actions from './NewPartyActions';
 
 class NewParty extends Component {
@@ -15,22 +16,19 @@ class NewParty extends Component {
 
     // testing name object (will be pulling from database or state here)
     const users = [
-      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQDgNusZ6nr-BEOW_xUn5bm5du3CoCt5XDTjKe4jCQk98lzi_15OvUGhMbc3hrZl2ODFzqRc4i-y-KTw6nBhvabzJ_VC3QpRPEEh0ZrMmxpXCRCCtl7XFDjP-VKuxXLPe2oQmnsMIsapjdbsKl3uYt3--LyRjpHMhmf2ZYstKLn_F2-S3RZS0vvjVBg-KVfKQg'},
-      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQDgNusZ6nr-BEOW_xUn5bm5du3CoCt5XDTjKe4jCQk98lzi_15OvUGhMbc3hrZl2ODFzqRc4i-y-KTw6nBhvabzJ_VC3QpRPEEh0ZrMmxpXCRCCtl7XFDjP-VKuxXLPe2oQmnsMIsapjdbsKl3uYt3--LyRjpHMhmf2ZYstKLn_F2-S3RZS0vvjVBg-KVfKQg'}  
+      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQCI1a4nHqMymdssDYgiEwMIsjJS9antTZmGLsVXqUXH4PJLBbzPCpHveaNNxhYNveWlZiSVcG5HNjmxPlWe-g0pPQmUCSt5RE-OL-p4ic3Gt9r4lqjO1qyDvRmRcA679zzAk4ag79XoOC_eHjao8vJ-vMjqzxOapVtofQePEKwDx-SOXDah_zJZSXY8AcGorg'},
+      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQCI1a4nHqMymdssDYgiEwMIsjJS9antTZmGLsVXqUXH4PJLBbzPCpHveaNNxhYNveWlZiSVcG5HNjmxPlWe-g0pPQmUCSt5RE-OL-p4ic3Gt9r4lqjO1qyDvRmRcA679zzAk4ag79XoOC_eHjao8vJ-vMjqzxOapVtofQePEKwDx-SOXDah_zJZSXY8AcGorg'}  
     ];
 
     this.props.actions.getFriendList(users);
   }
 
   toggleFriend = (username) => {
-    console.log("friend clicked: " + username);
     this.props.actions.toggleFriend(username);
   }
 
   createNewPlaylist = () => {
-    console.log("Create Playlist Clicked");
-
-    let selectedUsers = this.props.newParty.friendList.filter(friend => {
+    let selectedUsers = this.props.state.friendList.filter(friend => {
       return friend.selected;
     });
 
@@ -45,27 +43,27 @@ class NewParty extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Client res: ");
-      console.log(data);
       this.props.actions.setPlaylistTracks(data);
+
+      // SWITCH TO THE PLAYLIST FORM
+      // this will refresh the page so it seems
+      // window.location = "/playlist";
+      
     })
     .catch(err => {
       console.error(err);
     })
-
-    // SWITCH TO THE PLAYLIST FORM
-    // window.location = "/playlist";
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="new-party">
         <h1>NEW PARTY!</h1>
         <h3>Select your friends and create a playlist</h3>
-        <FriendList friendList={this.props.newParty.friendList} toggleFriend={this.toggleFriend}/>
+        <FriendList friendList={this.props.state.friendList} toggleFriend={this.toggleFriend}/>
         <PlaylistOptions />
         <button onClick={this.createNewPlaylist}>Create a Playlist with these friends!</button>
+        <Tracklist tracks={this.props.state.playlistTracks}/>
       </div>
     );
   }
@@ -73,7 +71,7 @@ class NewParty extends Component {
 
 function mapStateToProps(state) {
   return {
-    newParty: state.newParty
+    state: state.newParty
   };
 }
 

@@ -7,20 +7,20 @@ class App extends Component {
     response: ''
   };
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch('/api/v1/hello');
-    const body = await response.json();
+  // callApi = async () => {
+  //   const response = await fetch('/api/v1/hello');
+  //   const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
-    console.log(body);
-    return body;
-  };
+  //   if (response.status !== 200) throw Error(body.message);
+  //   console.log(body);
+  //   return body;
+  // };
 
   render() {
     return (
