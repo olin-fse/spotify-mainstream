@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import './NewParty.sass';
 import FriendList from 'components/new-party/FriendList';
 import PlaylistOptions from 'components/new-party/PlaylistOptions';
 import Tracklist from 'components/playlist/Tracklist';
@@ -16,8 +15,8 @@ class NewParty extends Component {
 
     // testing name object (will be pulling from database or state here)
     const users = [
-      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQCI1a4nHqMymdssDYgiEwMIsjJS9antTZmGLsVXqUXH4PJLBbzPCpHveaNNxhYNveWlZiSVcG5HNjmxPlWe-g0pPQmUCSt5RE-OL-p4ic3Gt9r4lqjO1qyDvRmRcA679zzAk4ag79XoOC_eHjao8vJ-vMjqzxOapVtofQePEKwDx-SOXDah_zJZSXY8AcGorg'},
-      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQCI1a4nHqMymdssDYgiEwMIsjJS9antTZmGLsVXqUXH4PJLBbzPCpHveaNNxhYNveWlZiSVcG5HNjmxPlWe-g0pPQmUCSt5RE-OL-p4ic3Gt9r4lqjO1qyDvRmRcA679zzAk4ag79XoOC_eHjao8vJ-vMjqzxOapVtofQePEKwDx-SOXDah_zJZSXY8AcGorg'}  
+      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQDOnFZYnHXIVEGE2hmD5LQlQvsJ2BJuSw62l4QntKneX0yH_xyi1piACDHtmkW6yHoHeHfIfTIAUu6QqLtb0_eQTgM9TZUqTuDnBkYnX3iZxyMVRmQC6TUgJASAR-0k6NmgIOR3nxu7LLr5AEdwLrWQMr6il_S_8LtVFmU8LSAqVpszAktfIYCFnsGymb0jOw'},
+      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQDOnFZYnHXIVEGE2hmD5LQlQvsJ2BJuSw62l4QntKneX0yH_xyi1piACDHtmkW6yHoHeHfIfTIAUu6QqLtb0_eQTgM9TZUqTuDnBkYnX3iZxyMVRmQC6TUgJASAR-0k6NmgIOR3nxu7LLr5AEdwLrWQMr6il_S_8LtVFmU8LSAqVpszAktfIYCFnsGymb0jOw'}  
     ];
 
     this.props.actions.getFriendList(users);
@@ -44,11 +43,6 @@ class NewParty extends Component {
     .then(res => res.json())
     .then(data => {
       this.props.actions.setPlaylistTracks(data);
-
-      // SWITCH TO THE PLAYLIST FORM
-      // this will refresh the page so it seems
-      // window.location = "/playlist";
-      
     })
     .catch(err => {
       console.error(err);

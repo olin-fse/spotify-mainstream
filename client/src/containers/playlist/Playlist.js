@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import './Playlist.sass';
 import * as actions from './PlaylistActions';
 
 class Playlist extends Component {

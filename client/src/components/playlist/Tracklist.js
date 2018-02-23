@@ -11,7 +11,6 @@ class Tracklist extends Component {
   }
 
   renderTracklist = () => {
-    // console.log(this.props);
     let tracks = [];
     this.props.tracks.forEach((track, i) => {
       tracks.push(

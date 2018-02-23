@@ -10,6 +10,7 @@ bundle.js.gz
 main.css
 main.css.map
 
+.vscode/
 coverage/
 .ctagsignore
 tags

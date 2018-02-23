@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const router = require('./routes/index.js');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 let app = express();
 const port = process.env.PORT || 5000;
@@ -39,6 +40,7 @@ const port = process.env.PORT || 5000;
 // The internal routes will be prepended with /api/v1
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser())
 app.use(express.static(__dirname + '/public'));
 app.use('/api/v1/', router);
 
