@@ -1,8 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const router = require('./routes/index.js');
+const loginRouter = require('./routes/login.js');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 let app = express();
 const port = process.env.PORT || 5000;
@@ -41,7 +43,14 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser())
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use('/api/v1/', router);
+app.use('/login', loginRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// console.log(app);
+// setTimeout(1000, app.close);
+
+module.exports = app;

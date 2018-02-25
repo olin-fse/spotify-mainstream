@@ -15,8 +15,8 @@ class NewParty extends Component {
 
     // testing name object (will be pulling from database or state here)
     const users = [
-      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQDOnFZYnHXIVEGE2hmD5LQlQvsJ2BJuSw62l4QntKneX0yH_xyi1piACDHtmkW6yHoHeHfIfTIAUu6QqLtb0_eQTgM9TZUqTuDnBkYnX3iZxyMVRmQC6TUgJASAR-0k6NmgIOR3nxu7LLr5AEdwLrWQMr6il_S_8LtVFmU8LSAqVpszAktfIYCFnsGymb0jOw'},
-      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQDOnFZYnHXIVEGE2hmD5LQlQvsJ2BJuSw62l4QntKneX0yH_xyi1piACDHtmkW6yHoHeHfIfTIAUu6QqLtb0_eQTgM9TZUqTuDnBkYnX3iZxyMVRmQC6TUgJASAR-0k6NmgIOR3nxu7LLr5AEdwLrWQMr6il_S_8LtVFmU8LSAqVpszAktfIYCFnsGymb0jOw'}  
+      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'},
+      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'}  
     ];
 
     this.props.actions.getFriendList(users);
@@ -31,7 +31,7 @@ class NewParty extends Component {
       return friend.selected;
     });
 
-    fetch('/api/v1/get-playlist', {
+    fetch('/api/v1/make-playlist', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

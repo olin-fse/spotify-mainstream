@@ -25,11 +25,14 @@
     "express": "4.16.2",
     "mysql": "^2.15.0",
     "node-fetch": "^2.0.0",
+    "path": "^0.12.7",
     "querystring": "^0.2.0",
     "spotify-web-api-node": "^2.5.0"
   },
   "devDependencies": {
-    "concurrently": "3.5.1"
+    "concurrently": "3.5.1",
+    "jest": "^20.0.4",
+    "supertest": "^3.0.0"
   },
   "proxy": "http://localhost:5000/"
 }

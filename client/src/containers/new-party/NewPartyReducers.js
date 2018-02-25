@@ -24,8 +24,8 @@ export default function newParty(state=defaultState, action) {
     
       case 'SET-PLAYLIST-TRACKS':
         return {
-          ...state, 
-          playlistTracks: state.playlistTracks.concat(action.tracks)
+          ...state,
+          playlistTracks: action.tracks
         }
 
     default:
