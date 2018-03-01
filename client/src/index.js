@@ -19,6 +19,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" component={App} />
         {/* <Route exact path="/login" component={Login}/> */}
+        <Route path="/:accessToken/:refreshToken" component={NewParty} />
         <Route path="/user/:accessToken/:refreshToken" component={NewParty} />
         <Route path="/error/:errorMsg" component={Error} />
       </div>
