@@ -5,9 +5,12 @@ class Login extends Component {
 
 	loginClick = () => {
 		fetch('/login', {
-      method: 'GET',
+      method: 'POST',
 		})
-		.then()
+    .then(res => res.json())
+    .then(json=> {
+      window.location = json.redirectUrl;
+    })
     .catch(err => {
       console.error(err);
     })

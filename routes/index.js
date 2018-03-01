@@ -19,8 +19,6 @@ router.post('/make-playlist', (req, res) => {
     })
 });
 
-
-
 // ______________________________________________________________
 // helper functions
 getTopTracks = (artistId, token) => {

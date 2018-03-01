@@ -28,12 +28,11 @@ const generateRandomString = N => (Math.random().toString(36)+Array(N).join('0')
  * Redirect the client to the spotify authorize url, but first set that user's
  * state in the cookie.
  */
-loginRouter.get('/', (_, res) => {
+loginRouter.post('/', (_, res) => {  
   console.log("LOGIN ROUTE");
-  
   const state = generateRandomString(16);
   res.cookie(STATE_KEY, state);
-  res.redirect(spotifyApi.createAuthorizeURL(scopes, state));
+  res.json({redirectUrl: spotifyApi.createAuthorizeURL(scopes, state)});
 });
 
 /**
@@ -43,7 +42,8 @@ loginRouter.get('/', (_, res) => {
  * is not good, redirect the user to an error page
  */
 loginRouter.get('/callback', (req, res) => {
-  const { code, state } = req.query;
+  console.log('CALLBACK ROUTE');
+  const { code, state } = req.params;
   const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
   // first do state validation
   if (state === null || state !== storedState) {
@@ -65,9 +65,9 @@ loginRouter.get('/callback', (req, res) => {
       });
 
       // we can also pass the token to the browser to make requests from there
-      res.redirect(`/#/user/${access_token}/${refresh_token}`);
+      // res.redirect(`/#/user/${access_token}/${refresh_token}`);
     }).catch(err => {
-      res.redirect('/#/error/invalid token');
+      // res.redirect('/#/error/invalid token');
     });
   }
 });
