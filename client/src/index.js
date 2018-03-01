@@ -6,10 +6,8 @@ import Store from 'store.js';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import App from './containers/app/App';
-// import Login from 'containers/login/Login';
 import NewParty from 'containers/new-party/NewParty';
 import Error from 'components/Error';
-// import Playlist from 'containers/playlist/Playlist';
 
 const rootEl = document.getElementById("root");
 
@@ -18,9 +16,8 @@ ReactDOM.render(
     <Router>
       <div>
         <Route exact path="/" component={App} />
-        {/* <Route exact path="/login" component={Login}/> */}
-        <Route path="/:accessToken/:refreshToken" component={NewParty} />
-        <Route path="/user/:accessToken/:refreshToken" component={NewParty} />
+        {/* <Route path="/:accessToken/:refreshToken" component={NewParty} />
+        <Route path="/user/:accessToken/:refreshToken" component={NewParty} /> */}
         <Route path="/error/:errorMsg" component={Error} />
       </div>
     </Router>
@@ -29,13 +26,3 @@ ReactDOM.render(
 );
 
 registerServiceWorker();
-
-// <Provider store={store}>
-//         <Router history={hashHistory}>
-//           <Route path="/" component={App}>
-//             <IndexRoute component={Login} />
-//             <Route path="/user/:accessToken/:refreshToken" component={User} />
-//             <Route path="/error/:errorMsg" component={Error} />
-//           </Route>
-//         </Router>
-// </Provider>

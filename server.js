@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/v1/', router);
-app.use('/', loginRouter);
+app.use('/login', loginRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
