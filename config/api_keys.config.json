@@ -1,4 +1,7 @@
 {
-  "CLIENT-ID": "clientId",
-  "CLIENT-SECRET": "clientSecret"
+  "client_id": "clientId",
+  "client_secret": "clientSecret",
+  "spotify_test_email": "testEmail",
+  "spotify_test_password": "testPassword"
+
 }

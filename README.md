@@ -1,12 +1,21 @@
 # SPOTIFY MAINSTREAM
 ### Project for Full-Stack Engineering, Spring 2018
-##### Katie Hite and Keenan Zucker
+##### Keenan Zucker
 
 _______________________________________
 
 
 Spotify Mainstream is a way to generate the perfect party playlist that everyone likes, because it's a combination of the party-goers' tunes!
 
+#### To Run the App
+
+1. `git clone  git@github.com:olin-fse/spotify-mainstream.git` to clone the repo 
+2. `cd client` to get to the front end code
+3. `npm install` to install the front end packages
+4. `cd ..` to go back to the home directory
+5. `npm install` to install the server packages
+6. `npm start` to start the app (will run both servers concurrently)
+7. A browser tab should open, but if not, open to `localhost:3000`
 
 _______________________________________
 
