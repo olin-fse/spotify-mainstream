@@ -2,8 +2,8 @@ let router = require('express').Router();
 let fetch = require('node-fetch');
 // testing name object (will be pulling from database or state here)
 const users = [
-  {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'},
-  {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'}  
+  {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: 'Alt-J', favoriteArtistId: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'},
+  {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: 'Lucius', favoriteArtistId: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'}  
 ];
 
 router.get('/healthz', (req, res) => {
@@ -11,7 +11,8 @@ router.get('/healthz', (req, res) => {
 });
 
 router.post('/make-playlist', (req, res) => {
-  getArtistsPromises(req.body.users)
+  let token = req.body.userToken;
+  getArtistsPromises(req.body.users, token)
     .then(results => {
       let allTracks = results.reduce(
         function(a, b) {
@@ -50,31 +51,31 @@ getTopTracks = (artistId, token) => {
   return fetch(url, options);
 }
 
-getUserTracks = (user, resolve, reject) => {
+getUserTracks = (user, token, resolve, reject) => {
   let tracksPerUser = 3;
-  
-  getTopTracks(user.favoriteArtist, user.token)
-  .then((response) => response.json())
-  .then((responseJson) => {
-    let tracks = [];
+  let artist = user.favoriteArtist;
+  getTopTracks(user.favoriteArtistId, token)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      let tracks = [];
 
-    for (let i = 0; i < tracksPerUser; i++) {
-      const { name, id } = responseJson.tracks[i];
-      tracks.push({ name, id });
-    }
-    resolve(tracks);
-  })
-  .catch((err) => {
-    console.error(err);
-    reject(err);
-  });
+      for (let i = 0; i < tracksPerUser; i++) {
+        const { name, id } = responseJson.tracks[i];
+        tracks.push({ name, id, artist});
+      }
+      resolve(tracks);
+    })
+    .catch((err) => {
+      console.error(err);
+      reject(err);
+    });
 }
 
-getArtistsPromises = (users) => {
+getArtistsPromises = (users, token) => {
   let promises = [];
   users.forEach(user => {
     promises.push(new Promise( (resolve, reject) => {
-      getUserTracks(user, resolve, reject);
+      getUserTracks(user, token, resolve, reject);
     }))
   });
 

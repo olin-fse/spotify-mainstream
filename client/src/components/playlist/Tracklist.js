@@ -14,7 +14,7 @@ class Tracklist extends Component {
     let tracks = [];
     this.props.tracks.forEach((track, i) => {
       tracks.push(
-        <li key={i}>{track.name}</li>
+        <li key={i}>{track.name} - {track.artist}</li>
       );
     });
 

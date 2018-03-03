@@ -44,7 +44,8 @@ class NewParty extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        users: selectedUsers
+        users: selectedUsers,
+        userToken: this.props.app.userToken
       })
     })
     .then(res => res.json())
