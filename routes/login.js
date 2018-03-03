@@ -76,20 +76,30 @@ loginRouter.get('/', function(req, res) {
             headers: { 'Authorization': 'Bearer ' + access_token },
             json: true
           };
+
+          const topArtistOptions = {
+            url: 'https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=1',
+            headers: { 'Authorization': 'Bearer ' + access_token },
+            json: true
+          }
   
           // use the access token to access the Spotify Web API
           request.get(options, function(error, response, body) {
             console.log(body);
+
+            request.get(topArtistOptions, function(err, res, body2) {
+              console.log(body2);
+            });
           });
   
           // we can also pass the token to the browser to make requests from there
           // TODO --> set tokens into database/state
-          res.redirect('http://localhost:3000');
-          // res.redirect('http://localhost:3000/' +
-          //   querystring.stringify({
-          //     access_token: access_token,
-          //     refresh_token: refresh_token
-          //   }));
+          // res.redirect('http://localhost:3000');
+          res.redirect('http://localhost:3000/#' +
+            querystring.stringify({
+              access_token: access_token,
+              refresh_token: refresh_token
+            }));
         } else {
           res.redirect('/#' +
             querystring.stringify({

@@ -13,13 +13,20 @@ class NewParty extends Component {
   constructor(props) {
     super(props);
 
-    // testing name object (will be pulling from database or state here)
-    const users = [
-      {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'},
-      {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'}  
-    ];
-
-    this.props.actions.getFriendList(users);
+    // Get all users from the database
+    fetch('/api/v1/get-users', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(users => {
+      this.props.actions.getFriendList(users);
+    })
+    .catch(err => {
+      console.error(err);
+    })
   }
 
   toggleFriend = (username) => {
@@ -27,7 +34,7 @@ class NewParty extends Component {
   }
 
   createNewPlaylist = () => {
-    let selectedUsers = this.props.state.friendList.filter(friend => {
+    let selectedUsers = this.props.newParty.friendList.filter(friend => {
       return friend.selected;
     });
 
@@ -42,30 +49,42 @@ class NewParty extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      this.props.actions.setPlaylistTracks(data);
+      console.log(data);
+      if (Object.keys(data).length === 0 && data.constructor === Object) console.error('no tracks received');
+      else this.props.actions.setPlaylistTracks(data);
     })
     .catch(err => {
       console.error(err);
     })
   }
 
-  render() {
+  renderNewParty() {
+    console.log(this.props);
     return (
       <div className="new-party">
-        <h1>NEW PARTY!</h1>
         <h3>Select your friends and create a playlist</h3>
-        <FriendList friendList={this.props.state.friendList} toggleFriend={this.toggleFriend}/>
+        <FriendList friendList={this.props.newParty.friendList} toggleFriend={this.toggleFriend}/>
         <PlaylistOptions />
         <button onClick={this.createNewPlaylist}>Create a Playlist with these friends!</button>
-        <Tracklist tracks={this.props.state.playlistTracks}/>
+        <Tracklist tracks={this.props.newParty.playlistTracks}/>
       </div>
     );
+  }
+
+  renderLoading() {
+    return <div></div>;
+  }
+
+  render() {
+    if (this.props.app.userToken) return this.renderNewParty();
+    else return this.renderLoading();
   }
 }
 
 function mapStateToProps(state) {
   return {
-    state: state.newParty
+    newParty: state.newParty,
+    app: state.app
   };
 }
 
