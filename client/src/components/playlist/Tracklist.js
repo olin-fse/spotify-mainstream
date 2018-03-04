@@ -14,14 +14,14 @@ class Tracklist extends Component {
     let tracks = [];
     this.props.tracks.forEach((track, i) => {
       tracks.push(
-        <li key={i}>{track.name} - {track.artist}</li>
+        <li key={i} className="track">{track.name} - {track.artist}</li>
       );
     });
 
     return (
       <div className="tracklist">
         <h3>Here is your playlist</h3>
-        <ul>
+        <ul className="tracklist-tracks">
           {tracks}
         </ul>
       </div>

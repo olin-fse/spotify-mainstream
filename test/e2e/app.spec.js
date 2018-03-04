@@ -15,7 +15,7 @@ describe('spotify-mainstream!', function() {
     expect('.App').to.be.visible();
   });
 
-  it('login flow with spotify auth works correctly with test user', async function() {
+  it('login flow with spotify auth works correctly and playlist can be created', async function() {
     browser.click('.login-user');
     browser.click('a=Log in to Spotify');
     browser.setValue('input[name="username"]', email);
@@ -23,5 +23,9 @@ describe('spotify-mainstream!', function() {
     browser.click('button=Log In');
     browser.pause(1000);
     expect(browser.getText('.welcome-message')).to.equal('Hello, Test!');
+    browser.click('li=Keenan Zucker');
+    browser.click('button=Create a Playlist with these friends!');
+    browser.waitForText('.tracklist', 1000);
+    expect('.track').to.have.count(3);
   })
 });

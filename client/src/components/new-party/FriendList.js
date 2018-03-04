@@ -26,8 +26,8 @@ class FriendList extends Component {
     });
 
     return (
-      <div className="friend-list">
-        <ul>
+      <div className="friend-list-container">
+        <ul className="friend-list">
           {friends}
         </ul>
       </div>
