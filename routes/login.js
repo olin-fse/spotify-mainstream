@@ -1,9 +1,12 @@
 let loginRouter = require('express').Router();
-let fetch = require('node-fetch');
-let request = require('request');
+const fetch = require('node-fetch');
+const request = require('request');
 const Spotify = require('spotify-web-api-node');
 const querystring = require('querystring');
 const keys = require('../config/api_keys.secret.json');
+
+let db = require('../app');
+const mysql = require('mysql');
 
 // configure the express server
 const CLIENT_ID = process.env.client_id || keys.client_id
@@ -87,9 +90,20 @@ loginRouter.get('/', function(req, res) {
           request.get(options, function(error, response, body) {
             console.log(body);
 
-            request.get(topArtistOptions, function(err, res, body2) {
-              console.log(body2);
+            let display_name = body.display_name;
+            let username = body.id;
+            let user_insert_2 = `INSERT INTO users (display_name, username, access_token, refresh_token) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}") ON DUPLICATE KEY UPDATE username = "${username}"`;
+            // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}")`
+            let query = db.query(user_insert_2, function (error, results, fields) {
+              if (error) throw error;
+              // Success!
             });
+           // console.log(query.sql); // INSERT INTO posts SET `id` = 1, `title` = 'Hello MySQL'
+            
+
+            // request.get(topArtistOptions, function(err, res, body2) {
+            //   console.log(body2);
+            // });
           });
   
           // we can also pass the token to the browser to make requests from there

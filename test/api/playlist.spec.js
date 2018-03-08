@@ -1,15 +1,8 @@
 const request = require('supertest');
+const app = require('../../app');
 
-const app = require('../../server');
-
-let agent;
-
-beforeAll(function() {
-  agent = request(app);
-});
-
-afterAll(function() {
-  app.close();
+afterAll(() => {
+  app.db.destroy();
 });
 
 test('/api/v1/healthz', function(done) {
