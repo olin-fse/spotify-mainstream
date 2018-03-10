@@ -21,7 +21,7 @@ class FriendList extends Component {
     let friends = [];
     this.props.friendList.forEach((friend, i) => {
       friends.push(
-        <li className={"selected-" + friend.selected} onClick={() => this.onToggleFriend(friend.username)} key={i}>{friend.name}</li>
+        <li className={"selected-" + friend.selected} onClick={() => this.onToggleFriend(friend.username)} key={i}>{friend.display_name}</li>
       );
     });
 
