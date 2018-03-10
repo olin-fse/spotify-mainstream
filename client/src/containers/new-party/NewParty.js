@@ -22,6 +22,7 @@ class NewParty extends Component {
     })
     .then(res => res.json())
     .then(users => {
+      console.log(users);
       this.props.actions.getFriendList(users);
     })
     .catch(err => {

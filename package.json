@@ -7,9 +7,9 @@
     "client": "cd client && npm start",
     "server": "nodemon server.js",
     "start": "concurrently --kill-others-on-fail \"npm run-script server\" \"npm run-script client\"",
-    "test": "npm run test-int && npm run test-e2e",     
+    "test": "npm run test-int && npm run test-e2e",
     "test-unit": "",
-    "test-int": "PORT=5001 jest ./test/api/*",    
+    "test-int": "PORT=5001 jest ./test/api/*",
     "test-e2e": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "repository": {
