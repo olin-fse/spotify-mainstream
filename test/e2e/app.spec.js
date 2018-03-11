@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiWebdriver = require('chai-webdriverio').default;
 chai.use(chaiWebdriver(browser));
 const expect = chai.expect;
+// TODO --> deal with thsi
 const keys = require('../../config/api_keys.secret.json');
 const email = process.env.spotify_test_email || keys.spotify_test_email;
 const password = process.env.spotify_test_password || keys.spotify_test_password;

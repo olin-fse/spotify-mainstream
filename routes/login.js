@@ -5,7 +5,7 @@ const Spotify = require('spotify-web-api-node');
 const querystring = require('querystring');
 const keys = require('../config/api_keys.secret.json');
 
-let db = require('../app');
+let db = require('../config/getDb');
 const mysql = require('mysql');
 
 // configure the express server
@@ -103,7 +103,7 @@ loginRouter.get('/callback', function(req, res) {
 
               let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES (?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE display_name = ?, access_token = ?, refresh_token = ?, fav_artist_id = ?, fav_artist_name = ?`;
 
-              let query = db.query(user_insert, [display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name, display_name, access_token, refresh_token, fav_artist_id, fav_artist_name], function (error, results, fields) {
+              let query = db.get().query(user_insert, [display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name, display_name, access_token, refresh_token, fav_artist_id, fav_artist_name], function (error, results, fields) {
                 if (error) throw error;
                 // Success!
               });

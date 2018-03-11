@@ -1,9 +1,10 @@
 const request = require('supertest');
 const app = require('../../app');
 const chai = require('chai');
+const db = require('../../config/getDb');
 
 afterAll(() => {
-  app.db.destroy();
+  db.get().destroy();
 });
 
 // Helper to check types
@@ -32,7 +33,7 @@ test('/api/v1/get-users', function(done) {
     .get('/api/v1/get-users')
     .expect(200)
     .then(res => {
-      expect(res.body).toBeType("array");
+      expect(res.body.users).toBeType("array");
       done();
     })
 });

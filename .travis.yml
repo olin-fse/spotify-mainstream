@@ -1,19 +1,19 @@
 language: node_js
 
-node_js:
-  - "iojs"
-  - "7"
+node_js: 8
 
 env:
   global:
-    - TEST_DB_HOST=localhost
-    - TEST_DB_USERNAME=test
-    - TEST_DB_PASSWORD=password
-    - TEST_DB_NAME=spotifymainstream
-    - TEST_DB_PORT=3306
+  - TEST_DB_HOST=localhost
+  - TEST_DB_USERNAME=test
+  - TEST_DB_PASSWORD=password
+  - TEST_DB_NAME=spotifymainstream
+  - TEST_DB_PORT=3306
 
 services:
 - mysql
 
 before_install:
 - mysql -u root --password="" < test/travis.sql
+- cd client
+- npm install
