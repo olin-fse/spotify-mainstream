@@ -17,3 +17,9 @@ before_install:
 - mysql -u root --password="" < test/travis.sql
 - cd client
 - npm install
+- npm run build
+
+script:
+- npm run test-int
+- node server.js &
+- npm run test-e2e

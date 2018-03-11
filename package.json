@@ -1,7 +1,7 @@
 {
   "name": "spotify-mainstream",
   "version": "1.0.0",
-  "description": "Spotify Mainstream -- an FSE project by Katie & Keenan",
+  "description": "Spotify Mainstream -- an FSE project by Keenan",
   "main": "index.js",
   "scripts": {
     "client": "cd client && npm start",
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/olin-fse/spotify-mainstream.git"
   },
-  "author": "Katie & Keenan",
+  "author": "Keenan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/olin-fse/spotify-mainstream/issues"
