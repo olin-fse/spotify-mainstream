@@ -25,7 +25,6 @@ router.post('/make-playlist', (req, res) => {
 
 router.get('/get-users', (req, res) => {
   console.log('fetching users');
-  // TODO --> query the database, send back the results
   const user_query = "SELECT * FROM users";
   let query = db.query(user_query, function (error, results, fields) {
     if (error) console.error(error);

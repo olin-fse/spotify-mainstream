@@ -99,9 +99,11 @@ loginRouter.get('/callback', function(req, res) {
               let fav_artist_id = responseJson.items[0].id;
               let fav_artist_name = responseJson.items[0].name;
               
-              let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}", "${fav_artist_id}", "${fav_artist_name}") ON DUPLICATE KEY UPDATE display_name = "${display_name}", access_token = "${access_token}", refresh_token = "${refresh_token}", fav_artist_id = "${fav_artist_id}", fav_artist_name = "${fav_artist_name}"`;
+              // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}", "${fav_artist_id}", "${fav_artist_name}") ON DUPLICATE KEY UPDATE display_name = "${display_name}", access_token = "${access_token}", refresh_token = "${refresh_token}", fav_artist_id = "${fav_artist_id}", fav_artist_name = "${fav_artist_name}"`;
 
-              let query = db.query(user_insert, function (error, results, fields) {
+              let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES (?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE display_name = ?, access_token = ?, refresh_token = ?, fav_artist_id = ?, fav_artist_name = ?`;
+
+              let query = db.query(user_insert, [display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name, display_name, access_token, refresh_token, fav_artist_id, fav_artist_name], function (error, results, fields) {
                 if (error) throw error;
                 // Success!
               });
@@ -110,14 +112,6 @@ loginRouter.get('/callback', function(req, res) {
             .catch((err) => {
               console.error(err);
             });
-
-            //INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE name="A", age=19
-
-          // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}") ON DUPLICATE KEY UPDATE username = "${username}"`;
-          // let query = db.query(user_insert, function (error, results, fields) {
-          //   if (error) throw error;
-          //   // Success!
-          // });
         });
 
         // we can also pass the token to the browser to make requests from there

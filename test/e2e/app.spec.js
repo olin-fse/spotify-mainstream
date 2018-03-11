@@ -21,7 +21,7 @@ describe('spotify-mainstream!', function() {
     browser.setValue('input[name="username"]', email);
     browser.setValue('input[name="password"]', password);
     browser.click('button=Log In');
-    browser.pause(1000);
+    browser.pause(2000);
     expect(browser.getText('.welcome-message')).to.equal('Hello, Test!');
     browser.click('li=Keenan Zucker');
     browser.click('button=Create a Playlist with these friends!');
