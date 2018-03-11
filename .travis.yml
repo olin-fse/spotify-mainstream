@@ -6,6 +6,7 @@ node_js:
 
 env:
   global:
+    - TEST_DB_HOST=localhost
     - TEST_DB_USERNAME=test
     - TEST_DB_PASSWORD=password
     - TEST_DB_NAME=spotifymainstream

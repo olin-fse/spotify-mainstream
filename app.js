@@ -8,13 +8,14 @@ let app = express();
 const port = process.env.PORT || 5000;
 
 // // Connect to database and example query to confirm
+// TODO -> Don't need to be secret
 var DB_CONFIG = require('./config/database_config.secret.json');
 connection = mysql.createConnection({
-	host: DB_CONFIG.host,
-	port: DB_CONFIG.port,
-	user: DB_CONFIG.login,
-	password: DB_CONFIG.pass,
-	database: DB_CONFIG.database
+	host: process.env.TEST_DB_HOST || DB_CONFIG.host,
+	port: process.env.TEST_DB_PORT || DB_CONFIG.port,
+	user: process.env.TEST_DB_USERNAME || DB_CONFIG.login,
+	password: process.env.TEST_DB_PASSWORD || DB_CONFIG.pass,
+	database: process.env.TEST_DB_NAME || DB_CONFIG.database
 });
 
 connection.connect(function(err) { 
