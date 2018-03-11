@@ -7,8 +7,14 @@ function makeConnection() {
 
   switch (process.env.NODE_ENV) {
     case 'TEST':
-      // config = {}
-      // break;
+      config = {
+        port: '3306',
+        host: 'localhost',
+        database: 'spotifymainstream_test',
+        user: 'test',
+        password: 'password' 
+      }
+      break;
     
     default:
       config = {

@@ -4,20 +4,17 @@ node_js: 8
 
 env:
   global:
-  - TEST_DB_HOST=localhost
-  - TEST_DB_USERNAME=test
-  - TEST_DB_PASSWORD=password
-  - TEST_DB_NAME=spotifymainstream
-  - TEST_DB_PORT=3306
+  - NODE_ENV=TEST
 
 services:
 - mysql
 
 before_install:
 - mysql -u root --password="" < test/travis.sql
-- cd client
+- pushd client
 - npm install
 - npm run build
+- popd
 
 script:
 - npm run test-int
