@@ -12,7 +12,6 @@
     "test-int": "PORT=5001 jest ./test/api/*",
     "test-e2e": "./node_modules/.bin/wdio wdio.conf.js",
     "test-e2e-travis": "./node_modules/.bin/wdio wdio.conf.travis.js"
-    
   },
   "repository": {
     "type": "git",
@@ -43,7 +42,6 @@
     "chromedriver": "^2.35.0",
     "concurrently": "3.5.1",
     "jest": "^20.0.4",
-    "nodemon": "^1.17.1",
     "supertest": "^3.0.0",
     "wdio-chromedriver-service": "^0.1.2",
     "wdio-jasmine-framework": "^0.3.2",
