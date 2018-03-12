@@ -3,8 +3,6 @@ const chaiWebdriver = require('chai-webdriverio').default;
 chai.use(chaiWebdriver(browser));
 const expect = chai.expect;
 
-const port = process.env.PORT || 'http://localhost:3000';
-
 let email;
 let password;
 
@@ -19,7 +17,7 @@ if (!process.env.spotify_test_email) {
 
 describe('spotify-mainstream!', function() {
   beforeEach(function () {
-    browser.url(port);
+    browser.url('http://localhost:5000');
     browser.setViewportSize({
       width: 1024,
       height: 1024
