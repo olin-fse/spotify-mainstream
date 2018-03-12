@@ -3,14 +3,21 @@ const fetch = require('node-fetch');
 const request = require('request');
 const Spotify = require('spotify-web-api-node');
 const querystring = require('querystring');
-const keys = require('../config/api_keys.secret.json');
+
+let CLIENT_ID, CLIENT_SECRET;
+
+if (!process.env.client_id) {
+  const keys = require('../config/api_keys.secret.json');
+  CLIENT_ID = keys.client_id
+  CLIENT_SECRET = keys.client_secret
+} else {
+  CLIENT_ID = process.env.client_id
+  CLIENT_SECRET = process.env.client_secret
+}
 
 let db = require('../config/getDb');
 const mysql = require('mysql');
 
-// configure the express server
-const CLIENT_ID = process.env.client_id || keys.client_id
-const CLIENT_SECRET = process.env.client_secret || keys.client_secret;
 const REDIRECT_URI = process.env.redirect_uri || 'http://localhost:5000/login/callback';
 const STATE_KEY = 'spotify_auth_state';
 // your application requests authorization
@@ -22,11 +29,10 @@ const stateKey = 'spotify_auth_state';
 
 loginRouter.get('/', function(req, res) {
 
-    console.log("LOGIN ROUTE");
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
   
-    // your application requests authorization
+    // requests authorization
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
@@ -39,10 +45,7 @@ loginRouter.get('/', function(req, res) {
   
 loginRouter.get('/callback', function(req, res) {
 
-  console.log("CALLBACK ROUTE");
-
-  // your application requests refresh and access tokens
-  // after checking the state parameter
+  //requests refresh and access tokens after checking the state parameter
 
   const code = req.query.code || null;
   const state = req.query.state || null;
