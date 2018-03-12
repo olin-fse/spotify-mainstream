@@ -2,17 +2,20 @@ const chai = require('chai');
 const chaiWebdriver = require('chai-webdriverio').default;
 chai.use(chaiWebdriver(browser));
 const expect = chai.expect;
-// TODO --> deal with thsi
 
-const dotenv = require("dotenv");
-const { error } = dotenv.config();
+let email;
+let password;
 
-if (error) {
-  throw error
-} 
+if (!process.env.spotify_test_email) {
+  let keys = require('../../config/api_keys.secret.json');
+  email = keys.spotify_test_email;
+  password = keys.spotify_test_password;
+} else {
+  email = process.env.spotify_test_email;
+  password = process.env.spotify_test_password;
+}
 
-const email = process.env.spotify_test_email;
-const password = process.env.spotify_test_password;
+
 
 describe('spotify-mainstream!', function() {
   beforeEach(function () {
