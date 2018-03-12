@@ -1,13 +1,11 @@
 let router = require('express').Router();
 let fetch = require('node-fetch');
-// testing name object (will be pulling from database or state here)
-const users = [
-  {name: 'Katie Hite', username: 'kghite', selected: false, favoriteArtist: 'Alt-J', favoriteArtistId: '3XHO7cRUPCLOr6jwp8vsx5', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'},
-  {name: 'Keenan Zucker', username: '1232057693', selected: false, favoriteArtist: 'Lucius', favoriteArtistId: '1WrqUPWlHN5FXCRcQgrkas', token: 'BQBptTVjbvkvSffLZpmuiuDHvKWNpS5_iKMn2HaSJIGicb4SAXztdii-KIFKF6E2rIN98hF9TGK0U8SPJpWHhgpEBakg4RuShjg5T7G7xij3JpwZR9mI-FqHuv-GdZ9h-UyBOAK6g4_xcGd4h1lAY5bBCfeCo2RF_KjPq61Nvy2L7gngUlExzcSB-bcMcyXjzw'}  
-];
+
+let db = require('../config/getDb');
+const mysql = require('mysql');
 
 router.get('/healthz', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 router.post('/make-playlist', (req, res) => {
@@ -26,14 +24,16 @@ router.post('/make-playlist', (req, res) => {
 });
 
 router.get('/get-users', (req, res) => {
-
-  // TODO --> query the database, send back the results
-
-  res.json(users);
-
+  console.log('fetching users');
+  const user_query = "SELECT * FROM users";
+  let query = db.get().query(user_query, function (error, results, fields) {
+    if (error) console.error(error);
+    else {
+      res.json({users: results});
+    }
+  })
 })
 
-// router.get()
 
 // ______________________________________________________________
 // helper functions
@@ -53,12 +53,11 @@ getTopTracks = (artistId, token) => {
 
 getUserTracks = (user, token, resolve, reject) => {
   let tracksPerUser = 3;
-  let artist = user.favoriteArtist;
-  getTopTracks(user.favoriteArtistId, token)
+  let artist = user.fav_artist_name;
+  getTopTracks(user.fav_artist_id, token)
     .then((response) => response.json())
     .then((responseJson) => {
       let tracks = [];
-
       for (let i = 0; i < tracksPerUser; i++) {
         const { name, id } = responseJson.tracks[i];
         tracks.push({ name, id, artist});

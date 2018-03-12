@@ -2,7 +2,7 @@
 .idea/
 node_modules/
 
-client/build/static/
+client/build
 
 bundle.js
 bundle.js.map
@@ -10,6 +10,7 @@ bundle.js.gz
 main.css
 main.css.map
 
+.env
 errorShots/
 .vscode/
 coverage/
