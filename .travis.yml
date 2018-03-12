@@ -19,7 +19,7 @@ before_install:
 script:
 - npm run test-int
 - node server.js &
-- npm run test-e2e
+- npm run test-e2e-travis
 
 os: linux
 

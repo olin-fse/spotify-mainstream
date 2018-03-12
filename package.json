@@ -10,7 +10,9 @@
     "test": "npm run test-int && npm run test-e2e",
     "test-unit": "",
     "test-int": "PORT=5001 jest ./test/api/*",
-    "test-e2e": "./node_modules/.bin/wdio wdio.conf.js"
+    "test-e2e": "./node_modules/.bin/wdio wdio.conf.js",
+    "test-e2e-travis": "./node_modules/.bin/wdio wdio.conf.travis.js"
+    
   },
   "repository": {
     "type": "git",
