@@ -29,5 +29,3 @@ addons:
 group: stable
 
 dist: trusty
-
-sudo: required
