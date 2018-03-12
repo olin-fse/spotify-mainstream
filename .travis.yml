@@ -18,7 +18,7 @@ before_install:
 
 script:
 - npm run test-int
-- npm start &
+- node server.js &
 - npm run test-e2e
 
 os: linux
@@ -29,3 +29,5 @@ addons:
 group: stable
 
 dist: trusty
+
+sudo: required
