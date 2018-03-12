@@ -22,6 +22,16 @@ describe('spotify-mainstream!', function() {
     browser.url('http://localhost:3000');
   });
 
+  it('should resize the current viewport', function () {
+    browser.setViewportSize({
+        width: 1024,
+        height: 1024
+    });
+
+    var windowSize = browser.windowHandleSize();
+    console.log(windowSize.value); // outputs: { width: 500, height: 602 }
+  });
+
   it('renders app without crashing', async function() {
     expect('.App').to.be.visible();
   });
