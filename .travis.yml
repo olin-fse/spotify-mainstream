@@ -20,3 +20,5 @@ script:
 - npm run test-int
 - node server.js &
 - npm run test-e2e
+
+os: linux
