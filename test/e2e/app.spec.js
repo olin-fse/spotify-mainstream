@@ -21,16 +21,15 @@ if (!process.env.spotify_test_email) {
 describe('spotify-mainstream!', function() {
   beforeEach(function () {
     browser.url(rootPath);
+    browser.setViewportSize({
+      width: 1024,
+      height: 1024
+    });
   });
 
   it('should resize the current viewport', function () {
-    browser.setViewportSize({
-        width: 1024,
-        height: 1024
-    });
-
     var windowSize = browser.windowHandleSize();
-    console.log(windowSize.value); // outputs: { width: 500, height: 602 }
+    console.log(windowSize.value);
   });
 
   it('renders app without crashing', async function() {
