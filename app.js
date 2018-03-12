@@ -3,6 +3,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
+const dotenv = require("dotenv");
+const { error } = dotenv.config();
+
+if (error) {
+  throw error
+} 
+
+
 const getDb = require('./config/getDb').makeConnection();
 
 let app = express();
