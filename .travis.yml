@@ -22,3 +22,6 @@ script:
 - npm run test-e2e
 
 os: linux
+
+addons:
+  chrome: stable
