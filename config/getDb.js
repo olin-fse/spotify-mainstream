@@ -15,6 +15,16 @@ function makeConnection() {
         password: 'password' 
       }
       break;
+
+    case 'PROD':
+      config = {
+        port: '3306',
+        host: '35.224.179.120',
+        database: 'spotifymainstream',
+        user: 'admin',
+        password: 'fse_2018' 
+      }
+      break;
     
     default:
       config = {
