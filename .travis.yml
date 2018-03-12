@@ -18,7 +18,7 @@ before_install:
 
 script:
 - npm run test-int
-- node server.js &
+- npm start &
 - npm run test-e2e
 
 os: linux
