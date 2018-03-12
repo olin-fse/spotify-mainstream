@@ -19,18 +19,12 @@ describe('spotify-mainstream!', function() {
   beforeEach(function () {
     browser.url('http://localhost:5000');
     browser.setViewportSize({
-      width: 1024,
-      height: 1024
+      width: 2000,
+      height: 2000
     });
   });
 
-  it('should resize the current viewport', async function () {
-    var windowSize = browser.windowHandleSize();
-    console.log(windowSize.value);
-  });
-
   it('renders app without crashing', async function() {
-    console.log(browser.getSource());
     expect('.App').to.be.visible();
   });
 
@@ -42,7 +36,7 @@ describe('spotify-mainstream!', function() {
     browser.click('button=Log In');
     browser.pause(2000);
     expect(browser.getText('.welcome-message')).to.equal('Hello, Test!');
-    browser.click('li=Keenan Zucker');
+    browser.click('li=Test');
     browser.click('button=Create a Playlist with these friends!');
     browser.waitForText('.tracklist', 1000);
     expect('.track').to.have.count(3);

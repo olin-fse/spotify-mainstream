@@ -28,7 +28,6 @@ const generateRandomString = N => (Math.random().toString(36)+Array(N).join('0')
 const stateKey = 'spotify_auth_state';
 
 loginRouter.get('/', function(req, res) {
-
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
   
@@ -120,7 +119,7 @@ loginRouter.get('/callback', function(req, res) {
         // we can also pass the token to the browser to make requests from there
         // TODO --> take URL params out
         // res.redirect('http://localhost:3000');
-        res.redirect('http://localhost:3000/#' +
+        res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token

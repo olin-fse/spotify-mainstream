@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import Store from 'store.js';
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,5 +20,3 @@ ReactDOM.render(
   </Provider>,
   rootEl
 );
-
-registerServiceWorker();
