@@ -27,12 +27,13 @@ describe('spotify-mainstream!', function() {
     });
   });
 
-  it('should resize the current viewport', function () {
+  it('should resize the current viewport', async function () {
     var windowSize = browser.windowHandleSize();
     console.log(windowSize.value);
   });
 
   it('renders app without crashing', async function() {
+    console.log(browser.getSource());
     expect('.App').to.be.visible();
   });
 
