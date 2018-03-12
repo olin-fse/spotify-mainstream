@@ -13,7 +13,6 @@ before_install:
 - mysql -u root --password="" < test/travis.sql
 - pushd client
 - npm install
-- npm run build
 - popd
 
 script:
