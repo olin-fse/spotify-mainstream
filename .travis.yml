@@ -25,3 +25,7 @@ os: linux
 
 addons:
   chrome: stable
+
+group: stable
+
+dist: trusty
