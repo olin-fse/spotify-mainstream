@@ -15,8 +15,6 @@ if (!process.env.spotify_test_email) {
   password = process.env.spotify_test_password;
 }
 
-console.log('EMAILPASSWORD', email, password);
-
 describe('spotify-mainstream!', function() {
   beforeEach(function () {
     browser.url('http://localhost:5000');
