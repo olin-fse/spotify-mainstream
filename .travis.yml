@@ -12,9 +12,10 @@ services:
 before_install:
 - mysql -u root --password="" < test/travis.sql
 - pushd client
-- npm install
+- npm install --depth 0
 - npm run build
 - popd
+- env
 
 script:
 - node server.js &
