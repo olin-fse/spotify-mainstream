@@ -1,7 +1,7 @@
 {
   "name": "spotify-mainstream",
   "version": "1.0.0",
-  "description": "Spotify Mainstream -- an FSE project by Katie & Keenan",
+  "description": "Spotify Mainstream -- an FSE project by Keenan",
   "main": "index.js",
   "scripts": {
     "client": "cd client && npm start",
@@ -10,13 +10,14 @@
     "test": "npm run test-int && npm run test-e2e",
     "test-unit": "",
     "test-int": "PORT=5001 jest ./test/api/*",
-    "test-e2e": "./node_modules/.bin/wdio wdio.conf.js"
+    "test-e2e": "./node_modules/.bin/wdio wdio.conf.js",
+    "test-e2e-travis": "./node_modules/.bin/wdio wdio.conf.travis.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/olin-fse/spotify-mainstream.git"
   },
-  "author": "Katie & Keenan",
+  "author": "Keenan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/olin-fse/spotify-mainstream/issues"
@@ -38,7 +39,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-webdriverio": "^0.4.3",
-    "chromedriver": "^2.35.0",
+    "chromedriver": "2.36.0",
     "concurrently": "3.5.1",
     "jest": "^20.0.4",
     "supertest": "^3.0.0",

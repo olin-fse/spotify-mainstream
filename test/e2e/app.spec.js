@@ -2,13 +2,26 @@ const chai = require('chai');
 const chaiWebdriver = require('chai-webdriverio').default;
 chai.use(chaiWebdriver(browser));
 const expect = chai.expect;
-const keys = require('../../config/api_keys.secret.json');
-const email = process.env.spotify_test_email || keys.spotify_test_email;
-const password = process.env.spotify_test_password || keys.spotify_test_password;
+
+let email;
+let password;
+
+if (!process.env.spotify_test_email) {
+  let keys = require('../../config/api_keys.secret.json');
+  email = keys.spotify_test_email;
+  password = keys.spotify_test_password;
+} else {
+  email = process.env.spotify_test_email;
+  password = process.env.spotify_test_password;
+}
 
 describe('spotify-mainstream!', function() {
   beforeEach(function () {
-    browser.url('http://localhost:3000');
+    browser.url('http://localhost:5000');
+    browser.setViewportSize({
+      width: 2000,
+      height: 2000
+    });
   });
 
   it('renders app without crashing', async function() {
@@ -21,9 +34,9 @@ describe('spotify-mainstream!', function() {
     browser.setValue('input[name="username"]', email);
     browser.setValue('input[name="password"]', password);
     browser.click('button=Log In');
-    browser.pause(1000);
+    browser.pause(2000);
     expect(browser.getText('.welcome-message')).to.equal('Hello, Test!');
-    browser.click('li=Keenan Zucker');
+    browser.click('li=Test');
     browser.click('button=Create a Playlist with these friends!');
     browser.waitForText('.tracklist', 1000);
     expect('.track').to.have.count(3);

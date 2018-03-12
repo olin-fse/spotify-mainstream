@@ -1,0 +1,34 @@
+language: node_js
+
+node_js: 8
+
+env:
+  global:
+  - NODE_ENV=TEST
+
+services:
+- mysql
+
+before_install:
+- mysql -u root --password="" < test/travis.sql
+- pushd client
+- npm install --depth 0
+- npm run build
+- popd
+- env
+
+script:
+- node server.js &
+- npm run test-e2e-travis
+- npm run test-int
+
+os: linux
+
+addons:
+  chrome: stable
+
+group: stable
+
+dist: trusty
+
+sudo: required

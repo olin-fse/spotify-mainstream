@@ -3,14 +3,21 @@ const fetch = require('node-fetch');
 const request = require('request');
 const Spotify = require('spotify-web-api-node');
 const querystring = require('querystring');
-const keys = require('../config/api_keys.secret.json');
 
-let db = require('../app');
+let CLIENT_ID, CLIENT_SECRET;
+
+if (!process.env.client_id) {
+  const keys = require('../config/api_keys.secret.json');
+  CLIENT_ID = keys.client_id
+  CLIENT_SECRET = keys.client_secret
+} else {
+  CLIENT_ID = process.env.client_id
+  CLIENT_SECRET = process.env.client_secret
+}
+
+let db = require('../config/getDb');
 const mysql = require('mysql');
 
-// configure the express server
-const CLIENT_ID = process.env.client_id || keys.client_id
-const CLIENT_SECRET = process.env.client_secret || keys.client_secret;
 const REDIRECT_URI = process.env.redirect_uri || 'http://localhost:5000/login/callback';
 const STATE_KEY = 'spotify_auth_state';
 // your application requests authorization
@@ -21,12 +28,10 @@ const generateRandomString = N => (Math.random().toString(36)+Array(N).join('0')
 const stateKey = 'spotify_auth_state';
 
 loginRouter.get('/', function(req, res) {
-
-    console.log("LOGIN ROUTE");
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
   
-    // your application requests authorization
+    // requests authorization
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
@@ -39,10 +44,7 @@ loginRouter.get('/', function(req, res) {
   
 loginRouter.get('/callback', function(req, res) {
 
-  console.log("CALLBACK ROUTE");
-
-  // your application requests refresh and access tokens
-  // after checking the state parameter
+  //requests refresh and access tokens after checking the state parameter
 
   const code = req.query.code || null;
   const state = req.query.state || null;
@@ -99,9 +101,11 @@ loginRouter.get('/callback', function(req, res) {
               let fav_artist_id = responseJson.items[0].id;
               let fav_artist_name = responseJson.items[0].name;
               
-              let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}", "${fav_artist_id}", "${fav_artist_name}") ON DUPLICATE KEY UPDATE display_name = "${display_name}", access_token = "${access_token}", refresh_token = "${refresh_token}", fav_artist_id = "${fav_artist_id}", fav_artist_name = "${fav_artist_name}"`;
+              // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}", "${fav_artist_id}", "${fav_artist_name}") ON DUPLICATE KEY UPDATE display_name = "${display_name}", access_token = "${access_token}", refresh_token = "${refresh_token}", fav_artist_id = "${fav_artist_id}", fav_artist_name = "${fav_artist_name}"`;
 
-              let query = db.query(user_insert, function (error, results, fields) {
+              let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES (?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE display_name = ?, access_token = ?, refresh_token = ?, fav_artist_id = ?, fav_artist_name = ?`;
+
+              let query = db.get().query(user_insert, [display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name, display_name, access_token, refresh_token, fav_artist_id, fav_artist_name], function (error, results, fields) {
                 if (error) throw error;
                 // Success!
               });
@@ -110,20 +114,12 @@ loginRouter.get('/callback', function(req, res) {
             .catch((err) => {
               console.error(err);
             });
-
-            //INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE name="A", age=19
-
-          // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}") ON DUPLICATE KEY UPDATE username = "${username}"`;
-          // let query = db.query(user_insert, function (error, results, fields) {
-          //   if (error) throw error;
-          //   // Success!
-          // });
         });
 
         // we can also pass the token to the browser to make requests from there
         // TODO --> take URL params out
         // res.redirect('http://localhost:3000');
-        res.redirect('http://localhost:3000/#' +
+        res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token

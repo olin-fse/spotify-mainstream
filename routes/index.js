@@ -1,11 +1,11 @@
 let router = require('express').Router();
 let fetch = require('node-fetch');
 
-let db = require('../app');
+let db = require('../config/getDb');
 const mysql = require('mysql');
 
 router.get('/healthz', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 router.post('/make-playlist', (req, res) => {
@@ -25,12 +25,11 @@ router.post('/make-playlist', (req, res) => {
 
 router.get('/get-users', (req, res) => {
   console.log('fetching users');
-  // TODO --> query the database, send back the results
   const user_query = "SELECT * FROM users";
-  let query = db.query(user_query, function (error, results, fields) {
+  let query = db.get().query(user_query, function (error, results, fields) {
     if (error) console.error(error);
     else {
-      res.json(results);
+      res.json({users: results});
     }
   })
 })
