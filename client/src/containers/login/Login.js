@@ -43,7 +43,6 @@ class Login extends Component {
   getUserInfo = () => {
     spotifyApi.getMe()
       .then((response) => {
-      // console.log(response);
       // TODO --> Make this Redux
       this.setState({
         username: response.display_name,
@@ -52,13 +51,12 @@ class Login extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="login">
         { //Check if message failed
           (this.state.loggedIn)
             ? <div className="welcome-message"> Hello, {this.state.username}!</div> 
-            : <a className="login-user" href="http://localhost:5000/login">LOGIN </a>
+            : <a className="login-user" href="/login">LOGIN </a>
         }
       </div>
     );
