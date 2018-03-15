@@ -89,9 +89,8 @@ loginRouter.get('/callback', function(req, res) {
         }
 
         // use the access token to access the Spotify Web API
-        // TODO --> Get Artist ID too
         request.get(options, function(error, response, body) {
-
+          
           let display_name = body.display_name;
           let username = body.id;
 
