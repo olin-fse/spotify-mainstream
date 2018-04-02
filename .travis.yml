@@ -15,7 +15,6 @@ before_install:
 - npm install --depth 0
 - npm run build
 - popd
-- env
 
 script:
 - node server.js &

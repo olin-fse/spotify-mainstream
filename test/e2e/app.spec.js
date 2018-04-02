@@ -20,7 +20,7 @@ describe('spotify-mainstream!', function() {
     browser.url('http://localhost:5000');
     browser.setViewportSize({
       width: 800,
-      height: 800
+      height: 400
     });
   });
 
