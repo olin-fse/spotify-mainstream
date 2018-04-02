@@ -28,11 +28,11 @@
     "cookie-parser": "^1.4.3",
     "express": "4.16.2",
     "mysql": "^2.15.0",
-    "node-fetch": "^2.0.0",
-    "npm": "^5.7.1",
+    "node-fetch": "^2.1.2",
+    "npm": "^5.8.0",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "save-dev": "^2.0.0",
     "spotify-web-api-node": "^2.5.0"
   },
@@ -45,9 +45,9 @@
     "supertest": "^3.0.0",
     "wdio-chromedriver-service": "^0.1.2",
     "wdio-jasmine-framework": "^0.3.2",
-    "wdio-mocha-framework": "^0.5.12",
-    "wdio-selenium-standalone-service": "0.0.9",
-    "webdriverio": "^4.10.2"
+    "wdio-mocha-framework": "^0.5.13",
+    "wdio-selenium-standalone-service": "~0.0.10",
+    "webdriverio": "~4.12.0"
   },
   "proxy": "http://localhost:5000/"
 }

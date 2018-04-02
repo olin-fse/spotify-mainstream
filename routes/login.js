@@ -99,8 +99,6 @@ loginRouter.get('/callback', function(req, res) {
             .then((responseJson) => {
               let fav_artist_id = responseJson.items[0].id;
               let fav_artist_name = responseJson.items[0].name;
-              
-              // let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES ("${display_name}", "${username}", "${access_token}", "${refresh_token}", "${fav_artist_id}", "${fav_artist_name}") ON DUPLICATE KEY UPDATE display_name = "${display_name}", access_token = "${access_token}", refresh_token = "${refresh_token}", fav_artist_id = "${fav_artist_id}", fav_artist_name = "${fav_artist_name}"`;
 
               let user_insert = `INSERT INTO users (display_name, username, access_token, refresh_token, fav_artist_id, fav_artist_name) VALUES (?, ?, ?, ?, ?, ?)  ON DUPLICATE KEY UPDATE display_name = ?, access_token = ?, refresh_token = ?, fav_artist_id = ?, fav_artist_name = ?`;
 
@@ -171,5 +169,4 @@ getFavArtist = (token) => {
   return fetch(url, options);
 }
   
-
 module.exports = loginRouter;
