@@ -37,6 +37,7 @@ describe('spotify-mainstream!', function() {
     browser.pause(2000);
     expect(browser.getText('.welcome-message')).to.equal('Hello, Test!');
     browser.pause(1000);
+    console.log(browser.log('browser'));
     console.log('\n', browser.screenshot(), '\n');
     browser.click('li=Test');
     browser.click('button=Create a Playlist with these friends!');
